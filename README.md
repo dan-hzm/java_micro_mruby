@@ -10,7 +10,7 @@ java micro mruby　　
 
 # 研究題目
 
-mrubyのJavaへの実装と評価に関する研究
+**mrubyのJavaへの実装と評価に関する研究**
 
 # 概要
 
@@ -24,14 +24,14 @@ micro mrubyを使用しています。
 # 内容
 
 + root
-	+ Makefileはmicro mrubyから持ってきてます
+	+ Makefileはmicro mrubyから持ってきたものを書き足しています
 	+ 使用する際は、`make java`を行うとVMがUTF8でJavaコンパイルされます
 
 + lib
 	+ Javaで書き換えた変数等を格納しています
 	+ Makefileで`make`することで次のことが行われます
-	1. 全てのJava fileがコンパイルされ、生成したclass fileを下層のlibに格納します
-	2. 全てのJava fileをコンパイルし、class fileを現在のdirに生成します
+		1. 全てのJava fileがコンパイルされ、生成したclass fileを下層のlibに格納します
+		2. 全てのJava fileをコンパイルし、class fileを現在のdirに生成します
 
 + コンパイル手順
 	+ libの中を先に`make`します
