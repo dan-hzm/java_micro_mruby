@@ -23,16 +23,16 @@ micro mrubyを使用しています。
 
 # 内容
 
-* root
-	* Makefileはmicro mrubyから持ってきてます
-	* 使用する際は、'make java'を行うとVMがUTF8でJavaコンパイルされます
++ root
+	+ Makefileはmicro mrubyから持ってきてます
+	+ 使用する際は、'make java'を行うとVMがUTF8でJavaコンパイルされます
 
-* lib
-	* Javaで書き換えた変数等を格納しています
-	* Makefileで'make'することで次のことが行われます
++ lib
+	+ Javaで書き換えた変数等を格納しています
+	+ Makefileで'make'することで次のことが行われます
 	1. 全てのJava fileがコンパイルされ、生成したclass fileを下層のlibに格納します
 	2. 全てのJava fileをコンパイルし、class fileを現在のdirに生成します
 
-* 現状
+# 現状
 lib内のfileは書き換えできています  
 しかし、VM.javaに関しては書き換え途中です
