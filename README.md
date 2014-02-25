@@ -19,7 +19,7 @@ Javaによる書き換えを行っています。
 なお、足掛かりとして機能を整数のみに制限した
 micro mrubyを使用しています。
 
-* micro mruby (https://github.com/)
+* micro mruby (https://github.com/kaz0505/micro/)
 
 # 内容
 
