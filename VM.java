@@ -11,7 +11,7 @@ class VM {
 	}
 
   // 初期化関数
-	public int init_vm() { // 引数 micro_state *state
+	public int init_vm() { 
   	// micro_stateオブジェクト生成 & 初期化
     lib.Micro_state state = new lib.Micro_state();
     state = new Micro_state();
@@ -24,8 +24,7 @@ class VM {
 
  		// STACK初期化
  		for( i=0 ; i<Config.MICRO_STACK_SIZE ; i++ ) {
-// task   		state.stack[i].set_tt(define.MRB_TT_FREE);
-// stackのttはvtypeで変更は何を操作してる？
+   		state.stack[i].set_tt(Mrb_vtype_t.MRB_TT_FREE);
    		state.set_stack_union_i(i, 0);
  		}
  
@@ -55,10 +54,11 @@ class VM {
         while( irep_count-- > 0 ){
           lib.Micro_irep irep = new lib.Micro_irep(); 
           // micro_irep *irep = &state->ireps[state->irep_count++];
-          
+          // ポインタirepにstate構造体内のireps[]の中身を移し替えしている
           // 命令語の処理
           // irep->code = (wordcode *)(ptr + 12);
-          irep.set_code_bytes_all(ptr + 12);
+          // wordcode全部を移し替え？
+          //irep.set_code_bytes_all(ptr + 12);
           int inst_count = ((ptr[9]*256) + ptr[10])*256 + ptr[11];
           // 作業用スペース
           irep.set_locals( (short)(ptr[4] * 256 + ptr[5]) );
@@ -86,6 +86,8 @@ class VM {
 
 	public char sym_search(int sym){ 
 // task    micro_irep *irep = state->ireps +  state->current_irep;
+    // state->irepsは配列のどれを指しているのか？
+    //　current_irepはint型
     lib.Micro_irep irep = new lib.Micro_irep();
  		char p = irep.syms_ptr;
   	
@@ -107,7 +109,6 @@ class VM {
     lib.RProc p = new lib.RProc();
 
   	for( i=0 ; i<Config.MICRO_RPROC_SIZE ; i++ ){
-//task       RProc *p = &(state->procs[i]); // ポインタの置換なので不要
     	if( true /*p.empty*/ ) continue;
     	if( p.method_id == h ) return i;
   		}
@@ -115,7 +116,7 @@ class VM {
   	return -1;
 	}
 
-	public int vm_run(){ // 引数 micro_state *state, mrb_value self
+	public int vm_run(){ 
 		lib.Micro_state state = new lib.Micro_state();
     state = new Micro_state();
     // state->op = state->ireps[0].code;
